@@ -55,11 +55,14 @@ class IndexPage extends React.Component {
   async handleOpenArticle(article) {
     const document = await this.fetchPage(article)
 
+    console.log(document)
+
     this.setState({
       isArticleVisible: !this.state.isArticleVisible,
       article: article,
       title: document.title[0].text,
       body: document.body,
+      gallery: document.gallery.length ? document.gallery : null,
     })
 
     setTimeout(() => {
@@ -122,6 +125,7 @@ class IndexPage extends React.Component {
               setWrapperRef={this.setWrapperRef}
               title={this.state.title}
               body={this.state.body}
+              gallery={this.state.gallery}
             />
             <Footer timeout={this.state.timeout} />
           </div>
